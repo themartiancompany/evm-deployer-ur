@@ -7,8 +7,8 @@ _offline="false"
 _git="false"
 _pkg=evm-deployer
 pkgname="${_pkg}"
-pkgver="0.0.0.0.0.0.0.0.0.0.0.0.1"
-_commit="dede2f0768dd4b5ebca1fca6b59f0d00c74873c5"
+pkgver="0.0.0.0.0.0.0.0.0.0.0.0.1.1"
+_commit="56217a6660af036ea33492a50f60959d3d00aa83"
 pkgrel=1
 _pkgdesc=(
   "Solidity contracts EVM networks deployer."
@@ -72,7 +72,7 @@ _tarname="${pkgname}-${_tag}"
     _sum="d4f4179c6e4ce1702c5fe6af132669e8ec4d0378428f69518f2926b969663a91"
   elif [[ "${_tag_name}" == "commit" ]]; then
     _tar="${_tarname}.zip::${_url}/archive/${_commit}.zip"
-    _sum="79d683009ffe4561e6be676d8189d10eec7300169730d15ffce1b2f368eab825"
+    _sum="388e1755f491c9c3e5181d108d2b94fd3f2242e725c6a647b839063d22a87c69"
   fi && \
     source+=(
       "${_tar}"

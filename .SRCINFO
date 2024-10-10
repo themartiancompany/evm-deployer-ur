@@ -1,6 +1,6 @@
 pkgbase = evm-deployer
 	pkgdesc = Solidity contracts EVM networks deployer.
-	pkgver = 0.0.0.0.0.0.0.0.0.0.0.0.1
+	pkgver = 0.0.0.0.0.0.0.0.0.0.0.0.1.1
 	pkgrel = 1
 	url = https://github.com/themartiancompany/evm-deployer
 	arch = any
@@ -12,9 +12,9 @@ pkgbase = evm-deployer
 	depends = libcrash-js
 	depends = nodejs-ethers
 	depends = solidity-compiler
-	source = evm-deployer-dede2f0768dd4b5ebca1fca6b59f0d00c74873c5.zip::https://github.com/themartiancompany/evm-deployer/archive/dede2f0768dd4b5ebca1fca6b59f0d00c74873c5.zip
+	source = evm-deployer-56217a6660af036ea33492a50f60959d3d00aa83.zip::https://github.com/themartiancompany/evm-deployer/archive/56217a6660af036ea33492a50f60959d3d00aa83.zip
 	validpgpkeys = 97E989E6CF1D2C7F7A41FF9F95684DBE23D6A3E9
 	validpgpkeys = DD6732B02E6C88E9E27E2E0D5FC6652B9D9A6C01
-	sha256sums = 79d683009ffe4561e6be676d8189d10eec7300169730d15ffce1b2f368eab825
+	sha256sums = 388e1755f491c9c3e5181d108d2b94fd3f2242e725c6a647b839063d22a87c69
 
 pkgname = evm-deployer
