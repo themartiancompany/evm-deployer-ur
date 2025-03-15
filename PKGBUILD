@@ -46,7 +46,7 @@ _py="python"
 _pkg=evm-deployer
 pkgname="${_pkg}"
 pkgver="0.0.0.0.0.0.0.0.1"
-_commit="6e87a3eb2b9151329a8233d06dd3deee11e02bed"
+_commit="f1ad87ee142a82912c9531449761a6779698e4cb"
 pkgrel=1
 _pkgdesc=(
   "Solidity contracts deployer for Ethereum Virtual
@@ -98,7 +98,7 @@ fi
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
-_archive_sum='0d4716d89c129819cd80f7f368e67473b62850b15dd9360d1e2f6e5958834a39'
+_archive_sum="83adbef9f9d175b268dfffaabf8e25bcaa7c416cfc6a34dca5dc900219380c62"
 _evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
 _evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
 _archive_sig_sum='bd2bd7d65233ac2714dbde8d0ad5cee70f6dcbab97e7ac427a2568c53389f812'
@@ -164,3 +164,4 @@ package() {
 }
 
 # vim: ft=sh syn=sh et
+
