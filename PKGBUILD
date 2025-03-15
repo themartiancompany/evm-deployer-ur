@@ -45,8 +45,8 @@ _node="nodejs"
 _py="python"
 _pkg=evm-deployer
 pkgname="${_pkg}"
-pkgver="0.0.0.0.0.0.0.0.1"
-_commit="f1ad87ee142a82912c9531449761a6779698e4cb"
+pkgver="0.0.0.0.0.0.0.0.1.1"
+_commit="8a3775eb7672c46e54f124b85b3e20e9927c1393"
 pkgrel=1
 _pkgdesc=(
   "Solidity contracts deployer for Ethereum Virtual
@@ -98,10 +98,10 @@ fi
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
-_archive_sum="83adbef9f9d175b268dfffaabf8e25bcaa7c416cfc6a34dca5dc900219380c62"
+_archive_sum="d8cbc947abb0f9eaf8e2974ec5a3bbf7208357ee15c6314d0c3ffadbaabcb22a"
 _evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
 _evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
-_archive_sig_sum='bd2bd7d65233ac2714dbde8d0ad5cee70f6dcbab97e7ac427a2568c53389f812'
+_archive_sig_sum="ef5b85b45d6d3226902383da7027e3c9c159a4a915ac0b2716717174914b9555"
 _archive_sig_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sig_sum}"
 _archive_sig_src="${_tarname}.zip.sig::${_archive_sig_uri}"
 if [[ "${_evmfs}" == "true" ]]; then
