@@ -74,7 +74,15 @@ depends=(
 [[ "${_os}" == "Android" ]] && \
   depends+=(
   )
+_source_index_optdepends=(
+  "evm-contracts-source-index:"
+    "to deploy contracts source on the"
+    "network-neutral uncensorable"
+    "on-chain Source Index."
+)
+
 optdepends=(
+  "${_source_index_optdepends[*]}"
 )
 [[ "${_os}" == 'Android' ]] && \
   optdepends+=(
