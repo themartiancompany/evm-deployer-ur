@@ -19,10 +19,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Maintainer: Truocolo <truocolo@aol.com>
-# Maintainer: Truocolo <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
-# Maintainer: Pellegrino Prevete (dvorak) <pellegrinoprevete@gmail.com>
-# Maintainer: Pellegrino Prevete (dvorak) <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
+# Maintainers:
+#   Truocolo
+#     <truocolo@aol.com>
+#     <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
+#   Pellegrino Prevete (dvorak)
+#     <pellegrinoprevete@gmail.com>
+#     <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
 
 _evmfs_available="$( \
   command \
@@ -39,13 +42,28 @@ fi
 _os="$( \
   uname \
     -o)"
-_offline="false"
-_git="false"
+if [[ ! -v "_offline" ]]; then
+  _offline="false"
+fi
+if [[ ! -v "_git" ]]; then
+  _git="false"
+fi
+if [[ ! -v "_docs" ]]; then
+  _docs="true"
+fi
 _node="nodejs"
 _py="python"
 _pkg=evm-deployer
-pkgname="${_pkg}"
-pkgver="0.0.0.0.0.0.0.0.1.1"
+pkgbase="${_pkg}"
+pkgname=(
+  "${_pkg}"
+)
+if [[ "${_docs}" == "true" ]]; then
+  pkgname+=(
+    "${_pkg}-docs"
+  )
+fi
+pkgver="0.0.0.0.0.0.0.0.1.1.1"
 _commit="8a3775eb7672c46e54f124b85b3e20e9927c1393"
 pkgrel=1
 _pkgdesc=(
@@ -70,10 +88,11 @@ depends=(
   "${_node}-ethers"
   "solidity-compiler"
 )
-[[ "${_os}" != "GNU/Linux" ]] && \
-[[ "${_os}" == "Android" ]] && \
+if [[ "${_os}" != "GNU/Linux" ]] && \
+   [[ "${_os}" == "Android" ]]; then
   depends+=(
   )
+fi
 _source_index_optdepends=(
   "evm-contracts-source-index:"
     "to deploy contracts source on the"
@@ -84,13 +103,18 @@ _source_index_optdepends=(
 optdepends=(
   "${_source_index_optdepends[*]}"
 )
-[[ "${_os}" == 'Android' ]] && \
+if [[ "${_os}" == 'Android' ]]; then
   optdepends+=(
   )
+fi
 makedepends=(
   'make'
-  "${_py}-docutils"
 )
+if [[ "${_docs}" == "true" ]]; then
+  makedepends+=(
+    "${_py}-docutils"
+  )
+fi
 checkdepends=(
   "shellcheck"
 )
@@ -162,13 +186,44 @@ check() {
     check
 }
 
-package() {
+package_evm-deployer() {
+  local \
+    _make_opts=()
+  _make_opts+=(
+    PREFIX="/usr"
+    DESTDIR="${pkgdir}"
+  )
   cd \
     "${_tarname}"
   make \
-    PREFIX="/usr" \
-    DESTDIR="${pkgdir}" \
-    install
+    "${_make_opts[@]}" \
+    install-scripts
+  install \
+    -Dm644 \
+    "COPYING" \
+    -t \
+    "${pkgdir}/usr/share/licenses/${pkgname}/"
+}
+
+package_evm-deployer-docs() {
+  local \
+    _make_opts=()
+  depends=()
+  _make_opts+=(
+    PREFIX="/usr"
+    DESTDIR="${pkgdir}"
+  )
+  cd \
+    "${_tarname}"
+  make \
+    "${_make_opts[@]}" \
+    install-doc \
+    install-man
+  install \
+    -Dm644 \
+    "COPYING" \
+    -t \
+    "${pkgdir}/usr/share/licenses/${pkgname}/"
 }
 
 # vim: ft=sh syn=sh et
