@@ -73,7 +73,7 @@ if [[ "${_docs}" == "true" ]]; then
   )
 fi
 pkgver="0.0.0.0.0.0.0.0.1.1.1"
-_commit="8a3775eb7672c46e54f124b85b3e20e9927c1393"
+_commit="8e3c8c1e0ef5d591bb81e56a43d90addd081654e"
 pkgrel=1
 _pkgdesc=(
   "Solidity contracts deployer for Ethereum Virtual
