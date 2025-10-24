@@ -51,6 +51,15 @@ fi
 if [[ ! -v "_docs" ]]; then
   _docs="true"
 fi
+if [[ ! -v "_git_http" ]]; then
+  _git_http="gitlab"
+fi
+if [[ ! -v "_archive_format" ]]; then
+  _archive_format="tar.gz"
+  if [[ "${_git_http}" == "github" ]]; then
+    _archive_format="zip"
+  fi
+fi
 _node="nodejs"
 _py="python"
 _pkg=evm-deployer
@@ -74,7 +83,7 @@ pkgdesc="${_pkgdesc[*]}"
 arch=(
   'any'
 )
-_http="https://github.com"
+_http="https://${_git_http}.com"
 _ns="themartiancompany"
 url="${_http}/${_ns}/${pkgname}"
 license=(
@@ -124,29 +133,32 @@ _url="${url}"
 _tag="${_commit}"
 _tag_name="commit"
 _tarname="${_pkg}-${_tag}"
+_tarfile="${_tarname}.${_archive_format}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${pkgname}"
 fi
+_sum="bda551ea4492be63781c374f5f43e431eba93190e3a2518567d614893c2f191d"
+_sig_sum="c2f66242fba79b8f8eaf5edcc66c6f9fbb65746d9837d214b245f849a44be9f8"
+_evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
-_evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
-_archive_sum="d8cbc947abb0f9eaf8e2974ec5a3bbf7208357ee15c6314d0c3ffadbaabcb22a"
-_evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
-_evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
-_archive_sig_sum="ef5b85b45d6d3226902383da7027e3c9c159a4a915ac0b2716717174914b9555"
-_archive_sig_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sig_sum}"
-_archive_sig_src="${_tarname}.zip.sig::${_archive_sig_uri}"
+_evmfs_dir="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}"
+_evmfs_uri="${_evmfs_dir}/${_sum}"
+_evmfs_src="${_tarfile}::${_evmfs_uri}"
+_sig_uri="${_evmfs_dir}/${_sig_sum}"
+_sig_src="${_tarfile}.sig::${_sig_uri}"
+source=()
+sha256sums=()
 if [[ "${_evmfs}" == "true" ]]; then
   makedepends+=(
     "evmfs"
   )
-  _src="${_evmfs_archive_src}"
-  _sum="${_archive_sum}"
+  _src="${_evmfs_src}"
   source+=(
-    "${_archive_sig_src}"
+    "${_sig_src}"
   )
   sha256sums+=(
-    "${_archive_sig_sum}"
+    "${_sig_sum}"
   )
 elif [[ "${_git}" == true ]]; then
   makedepends+=(
@@ -156,17 +168,17 @@ elif [[ "${_git}" == true ]]; then
   _sum="SKIP"
 elif [[ "${_git}" == false ]]; then
   if [[ "${_tag_name}" == 'pkgver' ]]; then
-    _src="${_tarname}.tar.gz::${_url}/archive/refs/tags/${_tag}.tar.gz"
+    _uri="${_url}/archive/refs/tags/${_tag}.${_archive_format}"
     _sum="d4f4179c6e4ce1702c5fe6af132669e8ec4d0378428f69518f2926b969663a91"
   elif [[ "${_tag_name}" == "commit" ]]; then
-    _src="${_tarname}.zip::${_url}/archive/${_commit}.zip"
-    _sum="${_archive_sum}"
+    _uri="${_url}/archive/${_commit}.${_archive_format}"
   fi
+  _src="${_tarfile}::${_uri}"
 fi
-source=(
+source+=(
   "${_src}"
 )
-sha256sums=(
+sha256sums+=(
   "${_sum}"
 )
 validpgpkeys=(
