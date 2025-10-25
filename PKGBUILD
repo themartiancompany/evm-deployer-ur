@@ -72,8 +72,8 @@ if [[ "${_docs}" == "true" ]]; then
     "${_pkg}-docs"
   )
 fi
-pkgver="0.0.0.0.0.0.0.0.1.1.1"
-_commit="8e3c8c1e0ef5d591bb81e56a43d90addd081654e"
+pkgver="0.0.0.0.0.0.0.0.1.1.1.1"
+_commit="a49da1a6c276d2e7d5008df951b0a9e8ba6c5cbf"
 pkgrel=1
 _pkgdesc=(
   "Solidity contracts deployer for Ethereum Virtual
@@ -137,8 +137,8 @@ _tarfile="${_tarname}.${_archive_format}"
 if [[ "${_offline}" == "true" ]]; then
   _url="file://${HOME}/${pkgname}"
 fi
-_sum="bda551ea4492be63781c374f5f43e431eba93190e3a2518567d614893c2f191d"
-_sig_sum="c2f66242fba79b8f8eaf5edcc66c6f9fbb65746d9837d214b245f849a44be9f8"
+_sum="d28ea63bfa39340a6b109fda677b9f0b025e94d79de814dd8b189c0b679bf795"
+_sig_sum="d8cd2abb09d2c1d5525e9a141b7ccd7dd84ea88cd9b86de986084b7e6efdca8d"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
